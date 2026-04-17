@@ -1,0 +1,45 @@
+.nudge-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-nudge-bg);
+  border-left: 3px solid var(--color-nudge-border);
+  border-radius: var(--radius-sm);
+  transition: transform 150ms ease-in, opacity 150ms ease-in;
+}
+
+.nudge-banner--dismissing {
+  transform: translateX(12px);
+  opacity: 0;
+}
+
+.nudge-banner__icon {
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.nudge-banner__message {
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.nudge-banner__dismiss {
+  flex-shrink: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--color-text-secondary);
+  padding: 0 var(--space-1);
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: color 100ms ease;
+}
+.nudge-banner__dismiss:hover { color: var(--color-text-primary); }

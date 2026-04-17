@@ -1,0 +1,32 @@
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: background 200ms ease, color 200ms ease;
+}
+
+.status-badge--applied {
+  background: color-mix(in srgb, var(--color-status-applied) 15%, transparent);
+  color: var(--color-status-applied);
+}
+.status-badge--interviewing {
+  background: color-mix(in srgb, var(--color-status-interviewing) 15%, transparent);
+  color: var(--color-status-interviewing);
+}
+.status-badge--offer {
+  background: color-mix(in srgb, var(--color-status-offer) 15%, transparent);
+  color: var(--color-status-offer);
+}
+.status-badge--accepted {
+  background: color-mix(in srgb, var(--color-status-accepted) 15%, transparent);
+  color: var(--color-status-accepted);
+}
+.status-badge--rejected {
+  background: color-mix(in srgb, var(--color-status-rejected) 15%, transparent);
+  color: var(--color-status-rejected);
+}

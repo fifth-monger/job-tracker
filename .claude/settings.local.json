@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pandoc --track-changes=all \"job-tracker-planning.docx\" -o /tmp/job-tracker-planning.md)",
+      "Read(//tmp/**)",
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "mcp__Claude_Preview__preview_start",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__tabs_create_mcp"
+    ]
+  }
+}
