@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useApplications } from '../hooks/useApplications'
 import { useNudges } from '../hooks/useNudges'
 import { isConfigured } from '../lib/supabase'
+import { STATUSES } from '../lib/constants'
 import { SummaryCard } from '../components/SummaryCard'
 import { NudgeBanner } from '../components/NudgeBanner'
 import { ApplicationList } from '../components/ApplicationList'
@@ -13,6 +14,13 @@ export function Dashboard() {
   const { nudges, dismiss } = useNudges(applications)
   const [formOpen, setFormOpen] = useState(false)
   const [editTarget, setEditTarget] = useState(null)
+  const [sortBy, setSortBy] = useState('date')
+
+  const sortedApplications = [...applications].sort((a, b) => {
+    if (sortBy === 'company') return a.company.localeCompare(b.company)
+    if (sortBy === 'status') return STATUSES.indexOf(a.status) - STATUSES.indexOf(b.status)
+    return new Date(b.date_applied) - new Date(a.date_applied)
+  })
 
   function openAdd() {
     setEditTarget(null)
@@ -78,7 +86,9 @@ export function Dashboard() {
           <p className="dashboard__loading">Loading…</p>
         ) : (
           <ApplicationList
-            applications={applications}
+            applications={sortedApplications}
+            sortBy={sortBy}
+            onSortChange={setSortBy}
             onEdit={openEdit}
             onDelete={remove}
           />
