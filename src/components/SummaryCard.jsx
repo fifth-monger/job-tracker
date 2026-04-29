@@ -22,12 +22,14 @@ export function SummaryCard({ applications }) {
       <div className="summary-card__statuses">
         {STATUSES.map((s) => (
           <div key={s} className="summary-card__status-item">
-            <span
-              className="summary-card__status-dot"
-              style={{ '--dot-color': `var(--color-status-${s.toLowerCase()})` }}
-              aria-hidden="true"
-            />
-            <span className="summary-card__status-name">{s}</span>
+            <span className="summary-card__status-label">
+              <span
+                className="summary-card__status-dot"
+                style={{ '--dot-color': `var(--color-status-${s.toLowerCase()})` }}
+                aria-hidden="true"
+              />
+              <span className="summary-card__status-name">{s} :</span>
+            </span>
             <span className="summary-card__status-count">{counts[s]}</span>
           </div>
         ))}

@@ -29,16 +29,22 @@
 }
 
 .summary-card__statuses {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: var(--space-2) var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
   margin-bottom: var(--space-3);
 }
 
 .summary-card__status-item {
   display: flex;
+}
+
+.summary-card__status-label {
+  display: flex;
   align-items: center;
   gap: var(--space-2);
+  line-height: 1; 
 }
 
 .summary-card__status-dot {
@@ -52,7 +58,8 @@
 .summary-card__status-name {
   font-size: 0.8rem;
   color: var(--color-text-secondary);
-  flex: 1;
+  min-width: auto;
+  padding-right: .5rem;
 }
 
 .summary-card__status-count {
