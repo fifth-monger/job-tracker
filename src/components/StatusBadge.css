@@ -14,6 +14,10 @@
   background: color-mix(in srgb, var(--color-status-applied) 15%, transparent);
   color: var(--color-status-applied);
 }
+.status-badge--followed-up {
+  background: color-mix(in srgb, var(--color-status-followed-up) 15%, transparent);
+  color: var(--color-status-followed-up);
+}
 .status-badge--interviewing {
   background: color-mix(in srgb, var(--color-status-interviewing) 15%, transparent);
   color: var(--color-status-interviewing);

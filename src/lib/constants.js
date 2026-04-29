@@ -1,4 +1,4 @@
-export const STATUSES = ['Applied', 'Interviewing', 'Offer', 'Accepted', 'Rejected']
+export const STATUSES = ['Applied', 'Followed-Up', 'Interviewing', 'Offer', 'Accepted', 'Rejected']
 
 export const DEFAULT_STATUS = 'Applied'
 
