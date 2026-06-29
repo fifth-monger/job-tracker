@@ -7,7 +7,11 @@
       "Bash(npm install:*)",
       "mcp__Claude_Preview__preview_start",
       "mcp__Claude_in_Chrome__navigate",
-      "mcp__Claude_in_Chrome__tabs_create_mcp"
+      "mcp__Claude_in_Chrome__tabs_create_mcp",
+      "Bash(mkdir -p /Users/Victoria/Desktop/Projects/job-tracker/scripts /Users/Victoria/Desktop/Projects/job-tracker/.github/workflows)"
+    ],
+    "additionalDirectories": [
+      "/Users/Victoria/Desktop/Projects/job-tracker"
     ]
   }
 }
