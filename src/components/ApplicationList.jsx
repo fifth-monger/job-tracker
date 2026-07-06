@@ -6,17 +6,11 @@ export function ApplicationList({ applications, sortBy, onSortChange, onEdit, on
     <div className="app-list-wrapper">
       <header className="app-list__header">
         <div className="app-list__heading">
-          <p className="app-list__kicker kicker only-day">The ledger</p>
-          <h2 className="app-list__title">
-            <span className="only-day">Applications</span>
-            <span className="only-evening only-evening--inline">applications</span>
-          </h2>
+          <p className="app-list__kicker kicker">The ledger</p>
+          <h2 className="app-list__title">Applications</h2>
         </div>
         <div className="app-list__controls">
-          <label htmlFor="sort-select" className="app-list__sort-label">
-            <span className="only-day">Sort</span>
-            <span className="only-evening only-evening--inline">Sort by</span>
-          </label>
+          <label htmlFor="sort-select" className="app-list__sort-label">Sort</label>
           <select
             id="sort-select"
             className="app-list__sort-select"
@@ -32,18 +26,14 @@ export function ApplicationList({ applications, sortBy, onSortChange, onEdit, on
 
       {applications.length === 0 ? (
         <div className="app-list__empty">
-          <div className="app-list__empty-sun only-day" aria-hidden="true" />
-          <p className="app-list__empty-text only-day">Your ledger awaits.</p>
-          <p className="app-list__empty-sub only-day">
+          <div className="app-list__empty-sun" aria-hidden="true" />
+          <p className="app-list__empty-text">Your ledger awaits.</p>
+          <p className="app-list__empty-sub">
             When a role catches your eye,{' '}
             <button type="button" className="app-list__empty-link" onClick={onAdd}>
               log your first application
             </button>
             .
-          </p>
-          <p className="app-list__empty-text only-evening only-evening--block">No applications yet.</p>
-          <p className="app-list__empty-sub only-evening only-evening--block">
-            Hit + Add to log your first one.
           </p>
         </div>
       ) : (

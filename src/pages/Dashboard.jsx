@@ -52,7 +52,7 @@ export function Dashboard() {
 
   return (
     <div className="dashboard">
-      <div className="dashboard__atmosphere only-day" aria-hidden="true">
+      <div className="dashboard__atmosphere" aria-hidden="true">
         <div className="dashboard__sun" />
         <div className="dashboard__leaf dashboard__leaf--1" />
         <div className="dashboard__leaf dashboard__leaf--2" />
@@ -61,20 +61,18 @@ export function Dashboard() {
       <header className="dashboard__masthead">
         <div className="dashboard__masthead-inner">
           <div className="dashboard__masthead-text">
-            <p className="dashboard__kicker only-day">Personal career log</p>
+            <p className="dashboard__kicker">Personal career log</p>
             <h1 className="dashboard__title">
-              <span className="only-day">Job <em>Tracker</em></span>
-              <span className="only-evening only-evening--block">job tracker</span>
+              Job <em>Tracker</em>
             </h1>
-            <p className="dashboard__tagline only-day">
+            <p className="dashboard__tagline">
               A quiet ledger for roles worth reaching toward.
             </p>
           </div>
           <div className="dashboard__actions">
             <ThemeToggle isEvening={isEvening} onToggle={toggle} />
             <button className="btn btn--primary dashboard__add-btn" onClick={openAdd}>
-              <span className="only-day">Log application</span>
-              <span className="only-evening only-evening--inline">+ Add</span>
+              Log application
             </button>
           </div>
         </div>
@@ -103,8 +101,7 @@ export function Dashboard() {
 
             {nudges.length > 0 && (
               <section className="dashboard__nudges" aria-label="Reminders">
-                <p className="dashboard__nudges-label kicker only-day">Reminders</p>
-                <p className="dashboard__nudges-label kicker only-evening only-evening--block">nudges</p>
+                <p className="dashboard__nudges-label kicker">Reminders</p>
                 {nudges.map((nudge) => (
                   <NudgeBanner key={nudge.key} nudge={nudge} onDismiss={dismiss} />
                 ))}
@@ -114,10 +111,7 @@ export function Dashboard() {
 
           <section className="dashboard__content" aria-label="Applications">
             {loading ? (
-              <>
-                <p className="dashboard__loading only-day">Gathering your entries…</p>
-                <p className="dashboard__loading only-evening only-evening--block">Loading…</p>
-              </>
+              <p className="dashboard__loading">Gathering your entries…</p>
             ) : (
               <ApplicationList
                 applications={sortedApplications}

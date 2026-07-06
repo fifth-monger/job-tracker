@@ -1,4 +1,4 @@
-/* ─── Day: Editorial × Solar Punk ────────────────────────────────────── */
+/* ─── Day: Solar Punk ────────────────────────────────────────────────── */
 :root,
 [data-theme="day"] {
   --color-bg:               #F4EFE4;
@@ -34,19 +34,48 @@
   --font-body:    'Newsreader', 'Georgia', serif;
   --font-mono:    'Space Mono', monospace;
 
+  --font-display-variation: 'SOFT' 100, 'WONK' 1;
+  --body-font-size: 1.05rem;
+  --body-line-height: 1.65;
+  --input-font-size: 1rem;
+
   --radius-sm:   6px;
   --radius-md:   12px;
   --radius-lg:   20px;
   --radius-pill: 100px;
+  --btn-radius:  var(--radius-pill);
 
   --shadow-soft:  0 2px 12px rgba(30, 42, 34, 0.06);
   --shadow-card:  0 4px 24px rgba(30, 42, 34, 0.08);
   --shadow-modal: 0 16px 48px rgba(30, 42, 34, 0.14);
 
   --btn-primary-fg: #FFFCF6;
+  --btn-primary-bg: linear-gradient(135deg, var(--color-solar) 0%, var(--color-accent) 100%);
+  --btn-primary-shadow: 0 2px 8px rgba(196, 127, 23, 0.25);
+  --btn-primary-hover-shadow: 0 4px 16px rgba(196, 127, 23, 0.35);
+  --btn-hover-transform: translateY(-1px);
+  --btn-font-size: 0.9rem;
+  --btn-font-weight: 600;
+  --btn-letter-spacing: 0.01em;
+  --btn-padding: 12px var(--space-5);
+
+  --card-hover-transform: translateY(-1px);
+  --card-border-idle: 1px solid var(--color-border-soft);
+  --card-border-hover: var(--color-border);
+  --overlay-bg: color-mix(in srgb, var(--color-text-primary) 40%, transparent);
+  --overlay-blur: blur(4px);
+  --atmosphere-opacity: 1;
+  --sun-gradient: radial-gradient(circle at 40% 40%, rgba(255, 220, 140, 0.55) 0%, rgba(232, 168, 56, 0.2) 40%, transparent 70%);
+  --masthead-bg: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  --masthead-blur: blur(12px);
+  --rule-gradient: linear-gradient(90deg, var(--color-accent) 0%, var(--color-border) 30%, transparent 100%);
+  --badge-border-width: 1px;
+  --badge-bg-mix: 12%;
+  --badge-bg-base: var(--color-surface);
+  --kicker-letter-spacing: 0.14em;
 }
 
-/* ─── Evening: Hacker Terminal ───────────────────────────────────────── */
+/* ─── Evening: Cyberpunk ─────────────────────────────────────────────── */
 [data-theme="evening"] {
   --color-bg:               #0D1117;
   --color-bg-warm:          #161B22;
@@ -81,16 +110,45 @@
   --font-body:    'DM Sans', system-ui, sans-serif;
   --font-mono:    'Space Mono', monospace;
 
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   8px;
-  --radius-pill: 100px;
+  --font-display-variation: normal;
+  --body-font-size: 0.9rem;
+  --body-line-height: 1.6;
+  --input-font-size: 0.9rem;
+
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   6px;
+  --radius-pill: 4px;
+  --btn-radius:  var(--radius-md);
 
   --shadow-soft:  none;
   --shadow-card:  none;
   --shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.5);
 
   --btn-primary-fg: #0D1117;
+  --btn-primary-bg: var(--color-accent);
+  --btn-primary-shadow: none;
+  --btn-primary-hover-shadow: none;
+  --btn-hover-transform: none;
+  --btn-font-size: 0.8rem;
+  --btn-font-weight: 700;
+  --btn-letter-spacing: 0.02em;
+  --btn-padding: 10px var(--space-4);
+
+  --card-hover-transform: none;
+  --card-border-idle: 1px solid transparent;
+  --card-border-hover: var(--color-border);
+  --overlay-bg: rgba(13, 17, 23, 0.85);
+  --overlay-blur: none;
+  --atmosphere-opacity: 0.35;
+  --sun-gradient: radial-gradient(circle at 40% 40%, rgba(82, 183, 136, 0.25) 0%, rgba(121, 192, 255, 0.08) 45%, transparent 70%);
+  --masthead-bg: var(--color-bg);
+  --masthead-blur: none;
+  --rule-gradient: linear-gradient(90deg, var(--color-accent) 0%, var(--color-border) 50%, transparent 100%);
+  --badge-border-width: 0px;
+  --badge-bg-mix: 15%;
+  --badge-bg-base: transparent;
+  --kicker-letter-spacing: 0.08em;
 }
 
 /* ─── Shared spacing ─────────────────────────────────────────────────── */
@@ -122,16 +180,11 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-body);
-  font-size: 1.05rem;
-  line-height: 1.65;
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   transition: background-color 250ms ease, color 250ms ease;
-}
-
-[data-theme="evening"] body {
-  font-size: 0.9rem;
-  line-height: 1.6;
 }
 
 img, svg { display: block; max-width: 100%; }
@@ -147,26 +200,11 @@ button {
 
 input, select, textarea {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: var(--input-font-size);
   color: var(--color-text-primary);
 }
 
-[data-theme="evening"] input,
-[data-theme="evening"] select,
-[data-theme="evening"] textarea {
-  font-size: 0.9rem;
-}
-
 ul, ol { list-style: none; }
-
-/* ─── Theme visibility helpers ───────────────────────────────────────── */
-.only-evening { display: none !important; }
-
-[data-theme="evening"] .only-day { display: none !important; }
-[data-theme="evening"] .only-evening { display: revert !important; }
-[data-theme="evening"] .only-evening--block { display: block !important; }
-[data-theme="evening"] .only-evening--inline { display: inline !important; }
-[data-theme="evening"] .only-evening--flex { display: flex !important; }
 
 /* ─── Focus ──────────────────────────────────────────────────────────── */
 :focus-visible {
@@ -175,36 +213,32 @@ ul, ol { list-style: none; }
   border-radius: var(--radius-sm);
 }
 
-[data-theme="evening"] :focus-visible {
-  outline-offset: 2px;
-}
-
 /* ─── Shared Button Styles ───────────────────────────────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: 12px var(--space-5);
-  border-radius: var(--radius-pill);
+  padding: var(--btn-padding);
+  border-radius: var(--btn-radius);
   font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 600;
-  font-variation-settings: 'SOFT' 50, 'WONK' 0;
-  letter-spacing: 0.01em;
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  font-variation-settings: var(--font-display-variation);
+  letter-spacing: var(--btn-letter-spacing);
   transition: background 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 150ms ease;
   min-height: 44px;
   min-width: 44px;
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, var(--color-solar) 0%, var(--color-accent) 100%);
+  background: var(--btn-primary-bg);
   color: var(--btn-primary-fg);
-  box-shadow: 0 2px 8px rgba(196, 127, 23, 0.25);
+  box-shadow: var(--btn-primary-shadow);
 }
 .btn--primary:hover {
-  box-shadow: 0 4px 16px rgba(196, 127, 23, 0.35);
-  transform: translateY(-1px);
+  box-shadow: var(--btn-primary-hover-shadow);
+  transform: var(--btn-hover-transform);
 }
 .btn--primary:disabled {
   opacity: 0.5;
@@ -212,23 +246,8 @@ ul, ol { list-style: none; }
   transform: none;
 }
 
-[data-theme="evening"] .btn {
-  border-radius: var(--radius-md);
-  padding: 10px var(--space-4);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  font-variation-settings: normal;
-}
-
-[data-theme="evening"] .btn--primary {
-  background: var(--color-accent);
-  box-shadow: none;
-}
 [data-theme="evening"] .btn--primary:hover {
   background: #63c99a;
-  transform: none;
-  box-shadow: none;
 }
 
 .btn--ghost {
@@ -240,23 +259,12 @@ ul, ol { list-style: none; }
 }
 .btn--ghost:hover { color: var(--color-text-primary); }
 
-[data-theme="evening"] .btn--ghost {
-  font-size: 0.9rem;
-}
-
 /* ─── Utility: small caps kicker ─────────────────────────────────────── */
 .kicker {
   font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--kicker-letter-spacing);
   text-transform: uppercase;
-  color: var(--color-text-muted);
-}
-
-[data-theme="evening"] .kicker {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
   color: var(--color-text-muted);
 }

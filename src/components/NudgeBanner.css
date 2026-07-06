@@ -18,11 +18,12 @@
   font-size: 0.9rem;
   flex-shrink: 0;
   padding-top: 2px;
-  filter: grayscale(20%);
+  color: var(--color-accent);
 }
 
 .nudge-banner__message {
   flex: 1;
+  font-family: var(--font-body);
   font-size: 0.92rem;
   font-style: italic;
   color: var(--color-text-primary);
@@ -43,41 +44,7 @@
   transition: color 100ms ease, background 100ms ease;
 }
 
-.nudge-banner__icon--evening {
-  display: none;
-}
-
-[data-theme="evening"] .nudge-banner {
-  border-left: 3px solid var(--color-nudge-border);
-  border-radius: var(--radius-sm);
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-}
-
-[data-theme="evening"] .nudge-banner__icon--day {
-  display: none;
-}
-
-[data-theme="evening"] .nudge-banner__icon--evening {
-  display: block;
-  color: var(--color-accent);
-}
-
-[data-theme="evening"] .nudge-banner__message {
-  font-style: normal;
-  font-size: 0.875rem;
-}
-
-[data-theme="evening"] .nudge-banner__dismiss {
-  border-radius: var(--radius-sm);
-}
-
 .nudge-banner__dismiss:hover {
   color: var(--color-text-primary);
   background: color-mix(in srgb, var(--color-leaf) 10%, transparent);
-}
-
-[data-theme="evening"] .nudge-banner__dismiss:hover {
-  background: transparent;
 }

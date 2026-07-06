@@ -13,59 +13,32 @@
 }
 
 .status-badge--applied {
-  background: color-mix(in srgb, var(--color-status-applied) 12%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-status-applied) var(--badge-bg-mix), var(--badge-bg-base));
   color: var(--color-status-applied);
-  border: 1px solid color-mix(in srgb, var(--color-status-applied) 25%, transparent);
+  border: var(--badge-border-width) solid color-mix(in srgb, var(--color-status-applied) 25%, transparent);
 }
 .status-badge--followed-up {
-  background: color-mix(in srgb, var(--color-status-followed-up) 12%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-status-followed-up) var(--badge-bg-mix), var(--badge-bg-base));
   color: var(--color-status-followed-up);
-  border: 1px solid color-mix(in srgb, var(--color-status-followed-up) 25%, transparent);
+  border: var(--badge-border-width) solid color-mix(in srgb, var(--color-status-followed-up) 25%, transparent);
 }
 .status-badge--interviewing {
-  background: color-mix(in srgb, var(--color-status-interviewing) 12%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-status-interviewing) var(--badge-bg-mix), var(--badge-bg-base));
   color: var(--color-status-interviewing);
-  border: 1px solid color-mix(in srgb, var(--color-status-interviewing) 25%, transparent);
+  border: var(--badge-border-width) solid color-mix(in srgb, var(--color-status-interviewing) 25%, transparent);
 }
 .status-badge--offer {
-  background: color-mix(in srgb, var(--color-status-offer) 12%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-status-offer) var(--badge-bg-mix), var(--badge-bg-base));
   color: var(--color-status-offer);
-  border: 1px solid color-mix(in srgb, var(--color-status-offer) 25%, transparent);
+  border: var(--badge-border-width) solid color-mix(in srgb, var(--color-status-offer) 25%, transparent);
 }
 .status-badge--accepted {
-  background: color-mix(in srgb, var(--color-status-accepted) 12%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-status-accepted) var(--badge-bg-mix), var(--badge-bg-base));
   color: var(--color-status-accepted);
-  border: 1px solid color-mix(in srgb, var(--color-status-accepted) 25%, transparent);
+  border: var(--badge-border-width) solid color-mix(in srgb, var(--color-status-accepted) 25%, transparent);
 }
 .status-badge--rejected {
-  background: color-mix(in srgb, var(--color-status-rejected) 12%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-status-rejected) var(--badge-bg-mix), var(--badge-bg-base));
   color: var(--color-status-rejected);
-  border: 1px solid color-mix(in srgb, var(--color-status-rejected) 25%, transparent);
-}
-
-[data-theme="evening"] .status-badge {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  border: none;
-  padding: 3px 10px;
-}
-
-[data-theme="evening"] .status-badge--applied {
-  background: color-mix(in srgb, var(--color-status-applied) 15%, transparent);
-}
-[data-theme="evening"] .status-badge--followed-up {
-  background: color-mix(in srgb, var(--color-status-followed-up) 15%, transparent);
-}
-[data-theme="evening"] .status-badge--interviewing {
-  background: color-mix(in srgb, var(--color-status-interviewing) 15%, transparent);
-}
-[data-theme="evening"] .status-badge--offer {
-  background: color-mix(in srgb, var(--color-status-offer) 15%, transparent);
-}
-[data-theme="evening"] .status-badge--accepted {
-  background: color-mix(in srgb, var(--color-status-accepted) 15%, transparent);
-}
-[data-theme="evening"] .status-badge--rejected {
-  background: color-mix(in srgb, var(--color-status-rejected) 15%, transparent);
+  border: var(--badge-border-width) solid color-mix(in srgb, var(--color-status-rejected) 25%, transparent);
 }

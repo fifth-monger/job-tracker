@@ -18,7 +18,7 @@
   color: var(--color-accent);
 }
 
-.theme-toggle__icon--evening {
+.theme-toggle__icon--cyber {
   display: none;
   font-size: 0.85rem;
   letter-spacing: -0.08em;
@@ -34,6 +34,6 @@
   display: none;
 }
 
-[data-theme="evening"] .theme-toggle__icon--evening {
+[data-theme="evening"] .theme-toggle__icon--cyber {
   display: block;
 }

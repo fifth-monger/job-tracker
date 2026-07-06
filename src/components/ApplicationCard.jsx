@@ -9,14 +9,6 @@ function formatDate(dateStr) {
   })
 }
 
-function formatDateShort(dateStr) {
-  return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  })
-}
-
 const STATUS_SLUG = {
   Applied: 'applied',
   'Followed-Up': 'followed-up',
@@ -57,20 +49,11 @@ export function ApplicationCard({ application, onEdit, onDelete }) {
 
         <footer className="app-card__meta">
           <time className="app-card__date" dateTime={date_applied}>
-            <span className="only-day">{formatDate(date_applied)}</span>
-            <span className="only-evening only-evening--inline">{formatDateShort(date_applied)}</span>
+            {formatDate(date_applied)}
           </time>
-          {source && (
-            <span className="app-card__source">
-              <span className="only-day">via {source}</span>
-              <span className="only-evening only-evening--inline">{source}</span>
-            </span>
-          )}
+          {source && <span className="app-card__source">via {source}</span>}
           {notes && (
-            <>
-              <span className="app-card__notes only-day" aria-label="Has notes">Notes</span>
-              <span className="app-card__notes-icon only-evening only-evening--inline" aria-label="Has notes">✎</span>
-            </>
+            <span className="app-card__notes" aria-label="Has notes">Notes</span>
           )}
         </footer>
       </div>

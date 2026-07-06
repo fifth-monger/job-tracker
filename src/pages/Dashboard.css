@@ -13,6 +13,8 @@
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  opacity: var(--atmosphere-opacity);
+  transition: opacity 250ms ease;
 }
 
 .dashboard__sun {
@@ -22,12 +24,7 @@
   width: 340px;
   height: 340px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at 40% 40%,
-    rgba(255, 220, 140, 0.55) 0%,
-    rgba(232, 168, 56, 0.2) 40%,
-    transparent 70%
-  );
+  background: var(--sun-gradient);
 }
 
 .dashboard__leaf {
@@ -58,9 +55,9 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--masthead-bg);
+  backdrop-filter: var(--masthead-blur);
+  -webkit-backdrop-filter: var(--masthead-blur);
   padding: var(--space-6) var(--space-4) 0;
 }
 
@@ -78,7 +75,7 @@
   font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--kicker-letter-spacing);
   text-transform: uppercase;
   color: var(--color-leaf);
   margin-bottom: var(--space-2);
@@ -88,7 +85,7 @@
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 7vw, 3.6rem);
   font-weight: 600;
-  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  font-variation-settings: var(--font-display-variation);
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
@@ -122,12 +119,7 @@
   max-width: 1080px;
   margin: 0 auto;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    var(--color-accent) 0%,
-    var(--color-border) 30%,
-    transparent 100%
-  );
+  background: var(--rule-gradient);
 }
 
 /* ─── Main layout ────────────────────────────────────────────────────── */
@@ -196,6 +188,7 @@
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 600;
+  font-variation-settings: var(--font-display-variation);
   color: var(--color-accent);
   margin-bottom: var(--space-2);
 }
@@ -207,11 +200,12 @@
 }
 
 .dashboard__setup-body code {
+  font-family: var(--font-mono);
   font-size: 0.88rem;
   color: var(--color-text-primary);
   background: var(--color-surface);
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--color-border-soft);
 }
 
@@ -238,71 +232,4 @@
   .dashboard__add-btn {
     flex: 1;
   }
-}
-
-/* ─── Evening: hacker terminal ───────────────────────────────────────── */
-[data-theme="evening"] .dashboard__masthead {
-  padding: var(--space-3) var(--space-4) 0;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  background: var(--color-bg);
-}
-
-[data-theme="evening"] .dashboard__masthead-inner {
-  align-items: center;
-  padding-bottom: var(--space-3);
-}
-
-[data-theme="evening"] .dashboard__title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  letter-spacing: -0.02em;
-  font-variation-settings: normal;
-}
-
-[data-theme="evening"] .dashboard__rule {
-  background: var(--color-border);
-  height: 1px;
-}
-
-[data-theme="evening"] .dashboard__main {
-  padding: var(--space-4);
-  max-width: 960px;
-}
-
-[data-theme="evening"] .dashboard__layout {
-  gap: var(--space-4);
-}
-
-[data-theme="evening"] .dashboard__loading {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-style: normal;
-}
-
-[data-theme="evening"] .dashboard__setup {
-  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
-  border-color: var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-4);
-}
-
-[data-theme="evening"] .dashboard__setup-title {
-  font-size: 0.85rem;
-}
-
-[data-theme="evening"] .dashboard__setup-body {
-  font-size: 0.85rem;
-}
-
-[data-theme="evening"] .dashboard__setup-body code {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  background: var(--color-surface-raised);
-  border-color: var(--color-border);
-}
-
-[data-theme="evening"] .dashboard__nudges-label {
-  color: var(--color-accent);
 }

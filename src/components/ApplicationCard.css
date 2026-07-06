@@ -4,10 +4,10 @@
   align-items: stretch;
   gap: 0;
   background: var(--color-surface);
-  border: 1px solid var(--color-border-soft);
+  border: var(--card-border-idle);
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: box-shadow 200ms ease, border-color 200ms ease, transform 200ms ease;
+  transition: box-shadow 200ms ease, border-color 200ms ease, transform 200ms ease, background 200ms ease;
   text-align: left;
   width: 100%;
   overflow: hidden;
@@ -15,9 +15,10 @@
 }
 
 .app-card:hover {
-  border-color: var(--color-border);
+  border-color: var(--card-border-hover);
   box-shadow: var(--shadow-card);
-  transform: translateY(-1px);
+  transform: var(--card-hover-transform);
+  background: var(--color-surface-raised);
 }
 
 .app-card__accent {
@@ -60,7 +61,7 @@
   font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 600;
-  font-variation-settings: 'SOFT' 60;
+  font-variation-settings: var(--font-display-variation);
   color: var(--color-text-primary);
   line-height: 1.2;
   white-space: nowrap;
@@ -69,6 +70,7 @@
 }
 
 .app-card__role {
+  font-family: var(--font-body);
   font-size: 0.95rem;
   font-style: italic;
   color: var(--color-text-secondary);
@@ -82,6 +84,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-2) var(--space-3);
+  font-family: var(--font-body);
   font-size: 0.82rem;
   color: var(--color-text-muted);
 }
@@ -97,6 +100,7 @@
 }
 
 .app-card__notes {
+  font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -136,68 +140,4 @@
     opacity: 1;
     border-left-color: var(--color-border-soft);
   }
-}
-
-/* ─── Evening: hacker terminal ───────────────────────────────────────── */
-[data-theme="evening"] .app-card {
-  border: 1px solid transparent;
-  border-radius: var(--radius-md);
-  box-shadow: none;
-}
-
-[data-theme="evening"] .app-card:hover {
-  border-color: var(--color-border);
-  background: var(--color-surface-raised);
-  transform: none;
-  box-shadow: none;
-}
-
-[data-theme="evening"] .app-card__accent {
-  display: none;
-}
-
-[data-theme="evening"] .app-card__body {
-  padding: var(--space-3) var(--space-4);
-  gap: var(--space-1);
-}
-
-[data-theme="evening"] .app-card__header {
-  align-items: center;
-}
-
-[data-theme="evening"] .app-card__identity {
-  flex-direction: row;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-[data-theme="evening"] .app-card__company {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-[data-theme="evening"] .app-card__role {
-  font-style: normal;
-  font-size: 0.85rem;
-}
-
-[data-theme="evening"] .app-card__date {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-}
-
-[data-theme="evening"] .app-card__source {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-}
-
-[data-theme="evening"] .app-card__source .only-evening::before {
-  content: '· ';
-}
-
-[data-theme="evening"] .app-card__notes-icon {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
 }
