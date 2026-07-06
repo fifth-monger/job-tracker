@@ -2,44 +2,48 @@
   display: flex;
   align-items: flex-start;
   gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-4);
   background: var(--color-nudge-bg);
-  border-left: 3px solid var(--color-nudge-border);
-  border-radius: var(--radius-sm);
-  transition: transform 150ms ease-in, opacity 150ms ease-in;
+  border: 1px solid color-mix(in srgb, var(--color-nudge-border) 25%, transparent);
+  border-radius: var(--radius-md);
+  transition: transform 200ms ease-in, opacity 200ms ease-in;
 }
 
 .nudge-banner--dismissing {
-  transform: translateX(12px);
+  transform: translateX(8px);
   opacity: 0;
 }
 
 .nudge-banner__icon {
-  font-size: 0.85rem;
-  color: var(--color-accent);
+  font-size: 0.9rem;
   flex-shrink: 0;
   padding-top: 2px;
+  filter: grayscale(20%);
 }
 
 .nudge-banner__message {
   flex: 1;
-  font-size: 0.875rem;
+  font-size: 0.92rem;
+  font-style: italic;
   color: var(--color-text-primary);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .nudge-banner__dismiss {
   flex-shrink: 0;
   font-size: 1.2rem;
   line-height: 1;
-  color: var(--color-text-secondary);
-  padding: 0 var(--space-1);
-  min-height: 44px;
-  min-width: 44px;
+  color: var(--color-text-muted);
+  min-height: 36px;
+  min-width: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-sm);
-  transition: color 100ms ease;
+  border-radius: var(--radius-pill);
+  transition: color 100ms ease, background 100ms ease;
 }
-.nudge-banner__dismiss:hover { color: var(--color-text-primary); }
+
+.nudge-banner__dismiss:hover {
+  color: var(--color-text-primary);
+  background: color-mix(in srgb, var(--color-leaf) 10%, transparent);
+}

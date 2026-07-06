@@ -1,49 +1,76 @@
 .app-card {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
+  align-items: stretch;
+  gap: 0;
   background: var(--color-surface);
-  border: 1px solid transparent;
+  border: 1px solid var(--color-border-soft);
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: border-color 150ms ease, background 150ms ease;
+  transition: box-shadow 200ms ease, border-color 200ms ease, transform 200ms ease;
   text-align: left;
   width: 100%;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
 }
 
 .app-card:hover {
   border-color: var(--color-border);
-  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-1px);
 }
 
-.app-card__main {
+.app-card__accent {
+  width: 4px;
+  flex-shrink: 0;
+  background: var(--card-accent, var(--color-leaf));
+}
+
+.app-card--applied      { --card-accent: var(--color-status-applied); }
+.app-card--followed-up  { --card-accent: var(--color-status-followed-up); }
+.app-card--interviewing { --card-accent: var(--color-status-interviewing); }
+.app-card--offer        { --card-accent: var(--color-status-offer); }
+.app-card--accepted     { --card-accent: var(--color-status-accepted); }
+.app-card--rejected     { --card-accent: var(--color-status-rejected); }
+
+.app-card__body {
   flex: 1;
   min-width: 0;
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-3);
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: var(--space-3);
+}
+
+.app-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
 }
 
 .app-card__identity {
+  min-width: 0;
   display: flex;
-  align-items: baseline;
-  gap: var(--space-2);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .app-card__company {
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-variation-settings: 'SOFT' 60;
   color: var(--color-text-primary);
-  font-size: 0.95rem;
+  line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .app-card__role {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+  font-style: italic;
   color: var(--color-text-secondary);
   white-space: nowrap;
   overflow: hidden;
@@ -53,59 +80,60 @@
 .app-card__meta {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
 }
 
 .app-card__date {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
+  font-variant-numeric: oldstyle-nums;
 }
 
-.app-card__source {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-}
 .app-card__source::before {
-  content: '· ';
+  content: '·';
+  margin-right: var(--space-2);
+  color: var(--color-border);
 }
 
-.app-card__notes-icon {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-}
-
-.app-card__right {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  flex-shrink: 0;
+.app-card__notes {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-leaf);
+  padding: 2px 8px;
+  background: var(--color-leaf-soft);
+  border-radius: var(--radius-pill);
 }
 
 .app-card__delete {
-  font-size: 1.2rem;
+  align-self: stretch;
+  font-size: 1.3rem;
   line-height: 1;
   color: var(--color-text-muted);
-  min-height: 44px;
   min-width: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-sm);
   opacity: 0;
-  transition: color 100ms ease, opacity 100ms ease;
+  transition: color 150ms ease, opacity 150ms ease, background 150ms ease;
+  border-left: 1px solid transparent;
 }
 
 .app-card:hover .app-card__delete {
   opacity: 1;
+  border-left-color: var(--color-border-soft);
 }
 
 .app-card__delete:hover {
   color: var(--color-status-rejected);
+  background: color-mix(in srgb, var(--color-status-rejected) 6%, transparent);
 }
 
-/* Show delete on touch devices always */
 @media (hover: none) {
-  .app-card__delete { opacity: 1; }
+  .app-card__delete {
+    opacity: 1;
+    border-left-color: var(--color-border-soft);
+  }
 }

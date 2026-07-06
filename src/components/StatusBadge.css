@@ -1,36 +1,44 @@
 .status-badge {
   display: inline-block;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-pill);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: background 200ms ease, color 200ms ease;
 }
 
 .status-badge--applied {
-  background: color-mix(in srgb, var(--color-status-applied) 15%, transparent);
+  background: color-mix(in srgb, var(--color-status-applied) 12%, var(--color-surface));
   color: var(--color-status-applied);
+  border: 1px solid color-mix(in srgb, var(--color-status-applied) 25%, transparent);
 }
 .status-badge--followed-up {
-  background: color-mix(in srgb, var(--color-status-followed-up) 15%, transparent);
+  background: color-mix(in srgb, var(--color-status-followed-up) 12%, var(--color-surface));
   color: var(--color-status-followed-up);
+  border: 1px solid color-mix(in srgb, var(--color-status-followed-up) 25%, transparent);
 }
 .status-badge--interviewing {
-  background: color-mix(in srgb, var(--color-status-interviewing) 15%, transparent);
+  background: color-mix(in srgb, var(--color-status-interviewing) 12%, var(--color-surface));
   color: var(--color-status-interviewing);
+  border: 1px solid color-mix(in srgb, var(--color-status-interviewing) 25%, transparent);
 }
 .status-badge--offer {
-  background: color-mix(in srgb, var(--color-status-offer) 15%, transparent);
+  background: color-mix(in srgb, var(--color-status-offer) 12%, var(--color-surface));
   color: var(--color-status-offer);
+  border: 1px solid color-mix(in srgb, var(--color-status-offer) 25%, transparent);
 }
 .status-badge--accepted {
-  background: color-mix(in srgb, var(--color-status-accepted) 15%, transparent);
+  background: color-mix(in srgb, var(--color-status-accepted) 12%, var(--color-surface));
   color: var(--color-status-accepted);
+  border: 1px solid color-mix(in srgb, var(--color-status-accepted) 25%, transparent);
 }
 .status-badge--rejected {
-  background: color-mix(in srgb, var(--color-status-rejected) 15%, transparent);
+  background: color-mix(in srgb, var(--color-status-rejected) 12%, var(--color-surface));
   color: var(--color-status-rejected);
+  border: 1px solid color-mix(in srgb, var(--color-status-rejected) 25%, transparent);
 }

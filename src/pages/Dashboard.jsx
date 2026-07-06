@@ -49,11 +49,28 @@ export function Dashboard() {
 
   return (
     <div className="dashboard">
-      <header className="dashboard__header">
-        <h1 className="dashboard__title">job tracker</h1>
-        <button className="btn btn--primary dashboard__add-btn" onClick={openAdd}>
-          + Add
-        </button>
+      <div className="dashboard__atmosphere" aria-hidden="true">
+        <div className="dashboard__sun" />
+        <div className="dashboard__leaf dashboard__leaf--1" />
+        <div className="dashboard__leaf dashboard__leaf--2" />
+      </div>
+
+      <header className="dashboard__masthead">
+        <div className="dashboard__masthead-inner">
+          <div className="dashboard__masthead-text">
+            <p className="dashboard__kicker">Personal career log</p>
+            <h1 className="dashboard__title">
+              Job <em>Tracker</em>
+            </h1>
+            <p className="dashboard__tagline">
+              A quiet ledger for roles worth reaching toward.
+            </p>
+          </div>
+          <button className="btn btn--primary dashboard__add-btn" onClick={openAdd}>
+            Log application
+          </button>
+        </div>
+        <div className="dashboard__rule" aria-hidden="true" />
       </header>
 
       <main className="dashboard__main">
@@ -72,27 +89,35 @@ export function Dashboard() {
           </div>
         )}
 
-        <SummaryCard applications={applications} />
+        <div className="dashboard__layout">
+          <aside className="dashboard__sidebar">
+            <SummaryCard applications={applications} />
 
-        {nudges.length > 0 && (
-          <section className="dashboard__nudges" aria-label="Nudges">
-            {nudges.map((nudge) => (
-              <NudgeBanner key={nudge.key} nudge={nudge} onDismiss={dismiss} />
-            ))}
+            {nudges.length > 0 && (
+              <section className="dashboard__nudges" aria-label="Reminders">
+                <p className="dashboard__nudges-label kicker">Reminders</p>
+                {nudges.map((nudge) => (
+                  <NudgeBanner key={nudge.key} nudge={nudge} onDismiss={dismiss} />
+                ))}
+              </section>
+            )}
+          </aside>
+
+          <section className="dashboard__content" aria-label="Applications">
+            {loading ? (
+              <p className="dashboard__loading">Gathering your entries…</p>
+            ) : (
+              <ApplicationList
+                applications={sortedApplications}
+                sortBy={sortBy}
+                onSortChange={setSortBy}
+                onEdit={openEdit}
+                onDelete={remove}
+                onAdd={openAdd}
+              />
+            )}
           </section>
-        )}
-
-        {loading ? (
-          <p className="dashboard__loading">Loading…</p>
-        ) : (
-          <ApplicationList
-            applications={sortedApplications}
-            sortBy={sortBy}
-            onSortChange={setSortBy}
-            onEdit={openEdit}
-            onDelete={remove}
-          />
-        )}
+        </div>
       </main>
 
       {formOpen && (

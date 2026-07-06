@@ -10,33 +10,42 @@ export function SummaryCard({ applications }) {
   const lastUpdated = applications.length
     ? new Date(
         Math.max(...applications.map((a) => new Date(a.updated_at)))
-      ).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      ).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
     : null
 
   return (
-    <div className="summary-card">
-      <div className="summary-card__header">
-        <span className="summary-card__label">Applications</span>
-        <span className="summary-card__total">{applications.length}</span>
-      </div>
-      <div className="summary-card__statuses">
+    <article className="summary-card">
+      <header className="summary-card__header">
+        <p className="summary-card__kicker kicker">At a glance</p>
+        <div className="summary-card__total-wrap">
+          <span className="summary-card__total">{applications.length}</span>
+          <span className="summary-card__total-label">
+            {applications.length === 1 ? 'application' : 'applications'}
+          </span>
+        </div>
+      </header>
+
+      <dl className="summary-card__statuses">
         {STATUSES.map((s) => (
-          <div key={s} className="summary-card__status-item">
-            <span className="summary-card__status-label">
+          <div key={s} className="summary-card__status-row">
+            <dt className="summary-card__status-label">
               <span
                 className="summary-card__status-dot"
                 style={{ '--dot-color': `var(--color-status-${s.toLowerCase()})` }}
                 aria-hidden="true"
               />
-              <span className="summary-card__status-name">{s} :</span>
-            </span>
-            <span className="summary-card__status-count">{counts[s]}</span>
+              {s}
+            </dt>
+            <dd className="summary-card__status-count">{counts[s]}</dd>
           </div>
         ))}
-      </div>
+      </dl>
+
       {lastUpdated && (
-        <p className="summary-card__last-updated">Last activity: {lastUpdated}</p>
+        <footer className="summary-card__footer">
+          <span className="summary-card__last-updated">Last activity · {lastUpdated}</span>
+        </footer>
       )}
-    </div>
+    </article>
   )
 }

@@ -45,7 +45,7 @@ export function ApplicationForm({ initial, onSave, onClose }) {
       <div className="form-modal" role="dialog" aria-modal="true"
         aria-label={isEdit ? 'Edit application' : 'Add application'}>
         <div className="form-modal__header">
-          <h2 className="form-modal__title">{isEdit ? 'Edit Application' : 'New Application'}</h2>
+          <h2 className="form-modal__title">{isEdit ? 'Edit entry' : 'New entry'}</h2>
           <button className="form-modal__close" onClick={onClose} aria-label="Close form">×</button>
         </div>
 
@@ -155,7 +155,7 @@ export function ApplicationForm({ initial, onSave, onClose }) {
               Cancel
             </button>
             <button type="submit" className="btn btn--primary" disabled={saving}>
-              {saving ? 'Saving…' : isEdit ? 'Save Changes' : 'Add Application'}
+              {saving ? 'Saving…' : isEdit ? 'Save changes' : 'Log application'}
             </button>
           </div>
         </form>
