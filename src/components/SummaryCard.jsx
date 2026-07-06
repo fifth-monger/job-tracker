@@ -10,16 +10,29 @@ export function SummaryCard({ applications }) {
   const lastUpdated = applications.length
     ? new Date(
         Math.max(...applications.map((a) => new Date(a.updated_at)))
-      ).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+      )
     : null
+
+  const lastUpdatedDay = lastUpdated?.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  })
+
+  const lastUpdatedEvening = lastUpdated?.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
 
   return (
     <article className="summary-card">
       <header className="summary-card__header">
-        <p className="summary-card__kicker kicker">At a glance</p>
+        <p className="summary-card__kicker kicker only-day">At a glance</p>
+        <span className="summary-card__label only-evening only-evening--inline">applications</span>
         <div className="summary-card__total-wrap">
           <span className="summary-card__total">{applications.length}</span>
-          <span className="summary-card__total-label">
+          <span className="summary-card__total-label only-day">
             {applications.length === 1 ? 'application' : 'applications'}
           </span>
         </div>
@@ -34,7 +47,8 @@ export function SummaryCard({ applications }) {
                 style={{ '--dot-color': `var(--color-status-${s.toLowerCase()})` }}
                 aria-hidden="true"
               />
-              {s}
+              <span className="only-day">{s}</span>
+              <span className="only-evening only-evening--inline">{s} :</span>
             </dt>
             <dd className="summary-card__status-count">{counts[s]}</dd>
           </div>
@@ -43,7 +57,12 @@ export function SummaryCard({ applications }) {
 
       {lastUpdated && (
         <footer className="summary-card__footer">
-          <span className="summary-card__last-updated">Last activity · {lastUpdated}</span>
+          <span className="summary-card__last-updated only-day">
+            Last activity · {lastUpdatedDay}
+          </span>
+          <span className="summary-card__last-updated only-evening only-evening--block">
+            Last activity: {lastUpdatedEvening}
+          </span>
         </footer>
       )}
     </article>

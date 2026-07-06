@@ -137,3 +137,67 @@
     border-left-color: var(--color-border-soft);
   }
 }
+
+/* ─── Evening: hacker terminal ───────────────────────────────────────── */
+[data-theme="evening"] .app-card {
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+[data-theme="evening"] .app-card:hover {
+  border-color: var(--color-border);
+  background: var(--color-surface-raised);
+  transform: none;
+  box-shadow: none;
+}
+
+[data-theme="evening"] .app-card__accent {
+  display: none;
+}
+
+[data-theme="evening"] .app-card__body {
+  padding: var(--space-3) var(--space-4);
+  gap: var(--space-1);
+}
+
+[data-theme="evening"] .app-card__header {
+  align-items: center;
+}
+
+[data-theme="evening"] .app-card__identity {
+  flex-direction: row;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+[data-theme="evening"] .app-card__company {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+[data-theme="evening"] .app-card__role {
+  font-style: normal;
+  font-size: 0.85rem;
+}
+
+[data-theme="evening"] .app-card__date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+[data-theme="evening"] .app-card__source {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+[data-theme="evening"] .app-card__source .only-evening::before {
+  content: '· ';
+}
+
+[data-theme="evening"] .app-card__notes-icon {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}

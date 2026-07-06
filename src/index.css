@@ -1,6 +1,6 @@
-/* ─── Editorial × Solar Punk ─────────────────────────────────────────── */
-:root {
-  /* Paper & sky */
+/* ─── Day: Editorial × Solar Punk ────────────────────────────────────── */
+:root,
+[data-theme="day"] {
   --color-bg:               #F4EFE4;
   --color-bg-warm:          #EDE6D6;
   --color-surface:          #FFFCF6;
@@ -8,7 +8,6 @@
   --color-border:           #D9CEBA;
   --color-border-soft:      #E8E0D2;
 
-  /* Solar accents */
   --color-accent:           #C47F17;
   --color-accent-soft:      #F5E6C8;
   --color-solar:            #E8A838;
@@ -17,12 +16,10 @@
   --color-leaf-soft:        #E2EDE4;
   --color-sky:              #5B8FA8;
 
-  /* Ink */
   --color-text-primary:     #1E2A22;
   --color-text-secondary:   #5A6358;
   --color-text-muted:       #8A9286;
 
-  /* Status — earthy, sun-lit */
   --color-status-applied:      #3D6B4F;
   --color-status-followed-up:  #B8860B;
   --color-status-interviewing: #4A7C8C;
@@ -35,16 +32,7 @@
 
   --font-display: 'Fraunces', 'Georgia', serif;
   --font-body:    'Newsreader', 'Georgia', serif;
-
-  --space-1:  4px;
-  --space-2:  8px;
-  --space-3:  12px;
-  --space-4:  16px;
-  --space-5:  20px;
-  --space-6:  24px;
-  --space-8:  32px;
-  --space-10: 40px;
-  --space-12: 48px;
+  --font-mono:    'Space Mono', monospace;
 
   --radius-sm:   6px;
   --radius-md:   12px;
@@ -54,6 +42,68 @@
   --shadow-soft:  0 2px 12px rgba(30, 42, 34, 0.06);
   --shadow-card:  0 4px 24px rgba(30, 42, 34, 0.08);
   --shadow-modal: 0 16px 48px rgba(30, 42, 34, 0.14);
+
+  --btn-primary-fg: #FFFCF6;
+}
+
+/* ─── Evening: Hacker Terminal ───────────────────────────────────────── */
+[data-theme="evening"] {
+  --color-bg:               #0D1117;
+  --color-bg-warm:          #161B22;
+  --color-surface:          #161B22;
+  --color-surface-raised:   #1C2128;
+  --color-border:           #2D6A4F;
+  --color-border-soft:      #21262D;
+
+  --color-accent:           #52B788;
+  --color-accent-soft:      #1A3D2B;
+  --color-solar:            #52B788;
+  --color-solar-glow:       #1A3D2B;
+  --color-leaf:             #52B788;
+  --color-leaf-soft:        #1A3D2B;
+  --color-sky:              #79C0FF;
+
+  --color-text-primary:     #E6EDF3;
+  --color-text-secondary:   #8B949E;
+  --color-text-muted:       #484F58;
+
+  --color-status-applied:      #52B788;
+  --color-status-followed-up:  #E3B341;
+  --color-status-interviewing: #79C0FF;
+  --color-status-offer:        #F0883E;
+  --color-status-accepted:     #3FB950;
+  --color-status-rejected:     #F85149;
+
+  --color-nudge-bg:     #1A3D2B;
+  --color-nudge-border: #52B788;
+
+  --font-display: 'Space Mono', monospace;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'Space Mono', monospace;
+
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   8px;
+  --radius-pill: 100px;
+
+  --shadow-soft:  none;
+  --shadow-card:  none;
+  --shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  --btn-primary-fg: #0D1117;
+}
+
+/* ─── Shared spacing ─────────────────────────────────────────────────── */
+:root {
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
 }
 
 /* ─── Reset ─────────────────────────────────────────────────────────── */
@@ -76,6 +126,12 @@ body {
   line-height: 1.65;
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+[data-theme="evening"] body {
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 img, svg { display: block; max-width: 100%; }
@@ -95,13 +151,32 @@ input, select, textarea {
   color: var(--color-text-primary);
 }
 
+[data-theme="evening"] input,
+[data-theme="evening"] select,
+[data-theme="evening"] textarea {
+  font-size: 0.9rem;
+}
+
 ul, ol { list-style: none; }
+
+/* ─── Theme visibility helpers ───────────────────────────────────────── */
+.only-evening { display: none !important; }
+
+[data-theme="evening"] .only-day { display: none !important; }
+[data-theme="evening"] .only-evening { display: revert !important; }
+[data-theme="evening"] .only-evening--block { display: block !important; }
+[data-theme="evening"] .only-evening--inline { display: inline !important; }
+[data-theme="evening"] .only-evening--flex { display: flex !important; }
 
 /* ─── Focus ──────────────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--color-leaf);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
+}
+
+[data-theme="evening"] :focus-visible {
+  outline-offset: 2px;
 }
 
 /* ─── Shared Button Styles ───────────────────────────────────────────── */
@@ -124,7 +199,7 @@ ul, ol { list-style: none; }
 
 .btn--primary {
   background: linear-gradient(135deg, var(--color-solar) 0%, var(--color-accent) 100%);
-  color: #FFFCF6;
+  color: var(--btn-primary-fg);
   box-shadow: 0 2px 8px rgba(196, 127, 23, 0.25);
 }
 .btn--primary:hover {
@@ -137,6 +212,25 @@ ul, ol { list-style: none; }
   transform: none;
 }
 
+[data-theme="evening"] .btn {
+  border-radius: var(--radius-md);
+  padding: 10px var(--space-4);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variation-settings: normal;
+}
+
+[data-theme="evening"] .btn--primary {
+  background: var(--color-accent);
+  box-shadow: none;
+}
+[data-theme="evening"] .btn--primary:hover {
+  background: #63c99a;
+  transform: none;
+  box-shadow: none;
+}
+
 .btn--ghost {
   background: transparent;
   color: var(--color-text-secondary);
@@ -146,6 +240,10 @@ ul, ol { list-style: none; }
 }
 .btn--ghost:hover { color: var(--color-text-primary); }
 
+[data-theme="evening"] .btn--ghost {
+  font-size: 0.9rem;
+}
+
 /* ─── Utility: small caps kicker ─────────────────────────────────────── */
 .kicker {
   font-family: var(--font-body);
@@ -153,5 +251,12 @@ ul, ol { list-style: none; }
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+[data-theme="evening"] .kicker {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
   color: var(--color-text-muted);
 }

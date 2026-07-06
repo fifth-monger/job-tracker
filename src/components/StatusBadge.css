@@ -42,3 +42,30 @@
   color: var(--color-status-rejected);
   border: 1px solid color-mix(in srgb, var(--color-status-rejected) 25%, transparent);
 }
+
+[data-theme="evening"] .status-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  border: none;
+  padding: 3px 10px;
+}
+
+[data-theme="evening"] .status-badge--applied {
+  background: color-mix(in srgb, var(--color-status-applied) 15%, transparent);
+}
+[data-theme="evening"] .status-badge--followed-up {
+  background: color-mix(in srgb, var(--color-status-followed-up) 15%, transparent);
+}
+[data-theme="evening"] .status-badge--interviewing {
+  background: color-mix(in srgb, var(--color-status-interviewing) 15%, transparent);
+}
+[data-theme="evening"] .status-badge--offer {
+  background: color-mix(in srgb, var(--color-status-offer) 15%, transparent);
+}
+[data-theme="evening"] .status-badge--accepted {
+  background: color-mix(in srgb, var(--color-status-accepted) 15%, transparent);
+}
+[data-theme="evening"] .status-badge--rejected {
+  background: color-mix(in srgb, var(--color-status-rejected) 15%, transparent);
+}

@@ -107,8 +107,14 @@
   max-width: 28ch;
 }
 
-.dashboard__add-btn {
+.dashboard__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   flex-shrink: 0;
+}
+
+.dashboard__add-btn {
   white-space: nowrap;
 }
 
@@ -225,7 +231,78 @@
     align-items: stretch;
   }
 
-  .dashboard__add-btn {
+  .dashboard__actions {
     width: 100%;
   }
+
+  .dashboard__add-btn {
+    flex: 1;
+  }
+}
+
+/* ─── Evening: hacker terminal ───────────────────────────────────────── */
+[data-theme="evening"] .dashboard__masthead {
+  padding: var(--space-3) var(--space-4) 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: var(--color-bg);
+}
+
+[data-theme="evening"] .dashboard__masthead-inner {
+  align-items: center;
+  padding-bottom: var(--space-3);
+}
+
+[data-theme="evening"] .dashboard__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+  font-variation-settings: normal;
+}
+
+[data-theme="evening"] .dashboard__rule {
+  background: var(--color-border);
+  height: 1px;
+}
+
+[data-theme="evening"] .dashboard__main {
+  padding: var(--space-4);
+  max-width: 960px;
+}
+
+[data-theme="evening"] .dashboard__layout {
+  gap: var(--space-4);
+}
+
+[data-theme="evening"] .dashboard__loading {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-style: normal;
+}
+
+[data-theme="evening"] .dashboard__setup {
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  border-color: var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+[data-theme="evening"] .dashboard__setup-title {
+  font-size: 0.85rem;
+}
+
+[data-theme="evening"] .dashboard__setup-body {
+  font-size: 0.85rem;
+}
+
+[data-theme="evening"] .dashboard__setup-body code {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: var(--color-surface-raised);
+  border-color: var(--color-border);
+}
+
+[data-theme="evening"] .dashboard__nudges-label {
+  color: var(--color-accent);
 }

@@ -11,7 +11,8 @@ export function NudgeBanner({ nudge, onDismiss }) {
 
   return (
     <div className={`nudge-banner${dismissing ? ' nudge-banner--dismissing' : ''}`}>
-      <span className="nudge-banner__icon" aria-hidden="true">☀</span>
+      <span className="nudge-banner__icon nudge-banner__icon--day" aria-hidden="true">☀</span>
+      <span className="nudge-banner__icon nudge-banner__icon--evening" aria-hidden="true">⚑</span>
       <p className="nudge-banner__message">{nudge.message}</p>
       <button
         className="nudge-banner__dismiss"

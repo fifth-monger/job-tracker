@@ -135,3 +135,51 @@
 .app-list__empty-link:hover {
   color: var(--color-leaf);
 }
+
+/* ─── Evening: hacker terminal ───────────────────────────────────────── */
+[data-theme="evening"] .app-list__header {
+  border-bottom: none;
+  padding-bottom: 0;
+  align-items: center;
+}
+
+[data-theme="evening"] .app-list__kicker {
+  display: none;
+}
+
+[data-theme="evening"] .app-list__title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+[data-theme="evening"] .app-list__sort-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+[data-theme="evening"] .app-list__sort-select {
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background-color: var(--color-surface);
+}
+
+[data-theme="evening"] .app-list__empty {
+  background: transparent;
+  border: none;
+  padding: var(--space-8) var(--space-4);
+}
+
+[data-theme="evening"] .app-list__empty-text {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 400;
+}
+
+[data-theme="evening"] .app-list__empty-sub {
+  font-size: 0.85rem;
+}
