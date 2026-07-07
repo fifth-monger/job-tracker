@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useApplications } from '../hooks/useApplications'
 import { useNudges } from '../hooks/useNudges'
 import { useTheme } from '../hooks/useTheme'
-import { isConfigured } from '../lib/supabase'
+import { isConfigured, supabase } from '../lib/supabase'
 import { STATUSES } from '../lib/constants'
 import { SummaryCard } from '../components/SummaryCard'
 import { NudgeBanner } from '../components/NudgeBanner'
@@ -51,6 +51,10 @@ export function Dashboard() {
     }
   }
 
+  async function handleSignOut() {
+    await supabase.auth.signOut()
+  }
+
   async function handleDelete(id) {
     setDeleteError(null)
     try {
@@ -81,6 +85,9 @@ export function Dashboard() {
           </div>
           <div className="dashboard__actions">
             <ThemeToggle isEvening={isEvening} onToggle={toggle} />
+            <button className="btn btn--ghost dashboard__signout-btn" onClick={handleSignOut}>
+              Sign out
+            </button>
             <button className="btn btn--primary dashboard__add-btn" onClick={openAdd}>
               Log application
             </button>
