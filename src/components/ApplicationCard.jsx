@@ -61,6 +61,7 @@ export function ApplicationCard({ application, onEdit, onDelete }) {
       <button
         className="app-card__delete"
         onClick={(e) => { e.stopPropagation(); handleDelete() }}
+        onKeyDown={(e) => e.stopPropagation()}
         aria-label={`Delete ${company} application`}
       >
         <span aria-hidden="true">×</span>
