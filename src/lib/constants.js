@@ -7,13 +7,15 @@ export const NUDGE_TYPES = {
   THANK_YOU: 'thank-you',
 }
 
-export const EMPTY_FORM = {
-  company: '',
-  role: '',
-  date_applied: new Date().toISOString().split('T')[0],
-  status: DEFAULT_STATUS,
-  salary_range: '',
-  contact: '',
-  source: '',
-  notes: '',
+export function emptyForm() {
+  return {
+    company: '',
+    role: '',
+    date_applied: new Date().toISOString().split('T')[0],
+    status: DEFAULT_STATUS,
+    salary_range: '',
+    contact: '',
+    source: '',
+    notes: '',
+  }
 }
