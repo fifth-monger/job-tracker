@@ -1,7 +1,7 @@
 import { NUDGE_TYPES } from './constants'
 
 function daysSince(dateStr) {
-  const then = new Date(dateStr)
+  const then = new Date(dateStr + 'T00:00:00')
   const now = new Date()
   return Math.floor((now - then) / (1000 * 60 * 60 * 24))
 }
