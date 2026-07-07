@@ -1,14 +1,26 @@
 import { useState, useEffect } from 'react'
-import { STATUSES, EMPTY_FORM } from '../lib/constants'
+import { STATUSES, emptyForm } from '../lib/constants'
 import './ApplicationForm.css'
 
+function formFromInitial(initial) {
+  if (!initial) return emptyForm()
+  return {
+    ...emptyForm(),
+    ...initial,
+    salary_range: initial.salary_range ?? '',
+    contact: initial.contact ?? '',
+    source: initial.source ?? '',
+    notes: initial.notes ?? '',
+  }
+}
+
 export function ApplicationForm({ initial, onSave, onClose }) {
-  const [form, setForm] = useState(initial ?? EMPTY_FORM)
+  const [form, setForm] = useState(() => formFromInitial(initial))
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    setForm(initial ?? EMPTY_FORM)
+    setForm(formFromInitial(initial))
   }, [initial])
 
   // Close on Escape
