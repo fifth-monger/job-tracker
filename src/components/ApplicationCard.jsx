@@ -22,9 +22,9 @@ export function ApplicationCard({ application, onEdit, onDelete }) {
   const { company, role, status, date_applied, source, notes } = application
   const statusSlug = STATUS_SLUG[status] || status.toLowerCase()
 
-  function handleDelete() {
+  async function handleDelete() {
     if (window.confirm(`Remove ${company} — ${role}?`)) {
-      onDelete(application.id)
+      await onDelete(application.id)
     }
   }
 

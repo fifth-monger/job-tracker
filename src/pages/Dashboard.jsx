@@ -18,6 +18,7 @@ export function Dashboard() {
   const [formOpen, setFormOpen] = useState(false)
   const [editTarget, setEditTarget] = useState(null)
   const [sortBy, setSortBy] = useState('date')
+  const [deleteError, setDeleteError] = useState(null)
 
   const sortedApplications = [...applications].sort((a, b) => {
     if (sortBy === 'company') return a.company.localeCompare(b.company)
@@ -47,6 +48,15 @@ export function Dashboard() {
     } else {
       const { id, created_at, updated_at, ...createFields } = fields
       await create(createFields)
+    }
+  }
+
+  async function handleDelete(id) {
+    setDeleteError(null)
+    try {
+      await remove(id)
+    } catch (err) {
+      setDeleteError(err.message)
     }
   }
 
@@ -95,6 +105,12 @@ export function Dashboard() {
           </div>
         )}
 
+        {deleteError && (
+          <div className="dashboard__error" role="alert">
+            Failed to delete: {deleteError}
+          </div>
+        )}
+
         <div className="dashboard__layout">
           <aside className="dashboard__sidebar">
             <SummaryCard applications={applications} />
@@ -118,7 +134,7 @@ export function Dashboard() {
                 sortBy={sortBy}
                 onSortChange={setSortBy}
                 onEdit={openEdit}
-                onDelete={remove}
+                onDelete={handleDelete}
                 onAdd={openAdd}
               />
             )}
