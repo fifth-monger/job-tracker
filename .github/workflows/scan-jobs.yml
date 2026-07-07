@@ -2,7 +2,7 @@ name: Scan Jobs
 
 on:
   schedule:
-    - cron: '0 14 * * *'  # 9am Central (UTC-5 standard / UTC-6 daylight)
+    - cron: '0 14 * * *'  # 8am CST / 9am CDT (14:00 UTC)
   workflow_dispatch:
 
 jobs:
