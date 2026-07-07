@@ -15,7 +15,10 @@ const TODAY = new Date().toISOString().slice(0, 10);
 
 function matchKeywords(title) {
   const lower = title.toLowerCase();
-  return KEYWORDS.filter(kw => lower.includes(kw));
+  return KEYWORDS.filter((kw) => {
+    const pattern = new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+    return pattern.test(lower);
+  });
 }
 
 function decodeHtmlEntities(str) {
