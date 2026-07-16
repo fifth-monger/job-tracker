@@ -33,6 +33,7 @@
 .app-card--offer        { --card-accent: var(--color-status-offer); }
 .app-card--accepted     { --card-accent: var(--color-status-accepted); }
 .app-card--rejected     { --card-accent: var(--color-status-rejected); }
+.app-card--dead-end     { --card-accent: var(--color-status-rejected); }
 
 .app-card__body {
   flex: 1;

@@ -85,7 +85,7 @@ export function Archived({
               Archived <em>applications</em>
             </h1>
             <p className="dashboard__tagline">
-              Rejected roles and quiet threads you cleared from the main ledger.
+              Closed roles and quiet threads you cleared from the main ledger.
             </p>
           </div>
           <div className="dashboard__actions">
@@ -144,7 +144,7 @@ export function Archived({
               emptyTitle="Nothing archived yet."
               emptyBody={
                 <p className="app-list__empty-sub">
-                  Applications marked Rejected are archived automatically. You can also archive any entry from the main list.
+                  Applications marked Rejected or Dead End are archived automatically. You can also archive any entry from the main list.
                 </p>
               }
             />

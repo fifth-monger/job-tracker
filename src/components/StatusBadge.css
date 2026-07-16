@@ -42,3 +42,8 @@
   color: var(--color-status-rejected);
   border: var(--badge-border-width) solid color-mix(in srgb, var(--color-status-rejected) 25%, transparent);
 }
+.status-badge--dead-end {
+  background: color-mix(in srgb, var(--color-status-rejected) var(--badge-bg-mix), var(--badge-bg-base));
+  color: var(--color-status-rejected);
+  border: var(--badge-border-width) solid color-mix(in srgb, var(--color-status-rejected) 25%, transparent);
+}

@@ -16,6 +16,7 @@ const STATUS_SLUG = {
   Offer: 'offer',
   Accepted: 'accepted',
   Rejected: 'rejected',
+  'Dead End': 'dead-end',
 }
 
 export function ApplicationCard({

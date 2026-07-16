@@ -1,9 +1,9 @@
-import { STATUSES } from '../lib/constants'
+import { SUMMARY_STATUS_ROWS } from '../lib/constants'
 import './SummaryCard.css'
 
 export function SummaryCard({ applications }) {
-  const counts = STATUSES.reduce((acc, s) => {
-    acc[s] = applications.filter((a) => a.status === s).length
+  const counts = SUMMARY_STATUS_ROWS.reduce((acc, row) => {
+    acc[row.key] = applications.filter((a) => row.statuses.includes(a.status)).length
     return acc
   }, {})
 
@@ -26,17 +26,17 @@ export function SummaryCard({ applications }) {
       </header>
 
       <dl className="summary-card__statuses">
-        {STATUSES.map((s) => (
-          <div key={s} className="summary-card__status-row">
+        {SUMMARY_STATUS_ROWS.map((row) => (
+          <div key={row.key} className="summary-card__status-row">
             <dt className="summary-card__status-label">
               <span
                 className="summary-card__status-dot"
-                style={{ '--dot-color': `var(--color-status-${s.toLowerCase()})` }}
+                style={{ '--dot-color': `var(--color-status-${row.colorVar})` }}
                 aria-hidden="true"
               />
-              {s}
+              {row.label}
             </dt>
-            <dd className="summary-card__status-count">{counts[s]}</dd>
+            <dd className="summary-card__status-count">{counts[row.key]}</dd>
           </div>
         ))}
       </dl>

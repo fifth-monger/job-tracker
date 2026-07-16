@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase, isConfigured } from '../lib/supabase'
+import { shouldAutoArchive } from '../lib/constants'
 
-/** When status is Rejected, force the row into the archive. */
+/** When status is Rejected or Dead End, force the row into the archive. */
 function withAutoArchive(fields) {
-  if (fields.status === 'Rejected') {
+  if (shouldAutoArchive(fields.status)) {
     return { ...fields, is_archived: true }
   }
   return fields
