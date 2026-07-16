@@ -1,44 +1,34 @@
 import { useState } from 'react'
-import { useNudges } from '../hooks/useNudges'
 import { useTheme } from '../hooks/useTheme'
 import { isConfigured, supabase } from '../lib/supabase'
 import { STATUSES, isArchived } from '../lib/constants'
-import { SummaryCard } from '../components/SummaryCard'
-import { NudgeBanner } from '../components/NudgeBanner'
 import { ApplicationList } from '../components/ApplicationList'
 import { ApplicationForm } from '../components/ApplicationForm'
 import { ThemeToggle } from '../components/ThemeToggle'
 import './Dashboard.css'
+import './Archived.css'
 
-export function Dashboard({
+export function Archived({
   applications,
   loading,
   error,
-  create,
   update,
   remove,
-  archive,
-  onViewArchived,
+  unarchive,
+  onViewActive,
 }) {
-  const activeApplications = applications.filter((app) => !isArchived(app))
-  const archivedCount = applications.filter(isArchived).length
-  const { nudges, dismiss } = useNudges(activeApplications)
+  const archivedApplications = applications.filter(isArchived)
   const { toggle, isEvening } = useTheme()
   const [formOpen, setFormOpen] = useState(false)
   const [editTarget, setEditTarget] = useState(null)
   const [sortBy, setSortBy] = useState('date')
   const [actionError, setActionError] = useState(null)
 
-  const sortedApplications = [...activeApplications].sort((a, b) => {
+  const sortedApplications = [...archivedApplications].sort((a, b) => {
     if (sortBy === 'company') return a.company.localeCompare(b.company)
     if (sortBy === 'status') return STATUSES.indexOf(a.status) - STATUSES.indexOf(b.status)
     return new Date(b.date_applied) - new Date(a.date_applied)
   })
-
-  function openAdd() {
-    setEditTarget(null)
-    setFormOpen(true)
-  }
 
   function openEdit(application) {
     setEditTarget(application)
@@ -54,8 +44,6 @@ export function Dashboard({
     const { id, created_at, updated_at, ...rest } = fields
     if (editTarget?.id) {
       await update(editTarget.id, rest)
-    } else {
-      await create(rest)
     }
   }
 
@@ -72,17 +60,17 @@ export function Dashboard({
     }
   }
 
-  async function handleArchive(id) {
+  async function handleUnarchive(id) {
     setActionError(null)
     try {
-      await archive(id)
+      await unarchive(id)
     } catch (err) {
       setActionError(err.message)
     }
   }
 
   return (
-    <div className="dashboard">
+    <div className="dashboard archived-page">
       <div className="dashboard__atmosphere" aria-hidden="true">
         <div className="dashboard__sun" />
         <div className="dashboard__leaf dashboard__leaf--1" />
@@ -92,28 +80,25 @@ export function Dashboard({
       <header className="dashboard__masthead">
         <div className="dashboard__masthead-inner">
           <div className="dashboard__masthead-text">
-            <p className="dashboard__kicker">Personal career log</p>
+            <p className="dashboard__kicker">Set aside for later</p>
             <h1 className="dashboard__title">
-              Job <em>Tracker</em>
+              Archived <em>applications</em>
             </h1>
             <p className="dashboard__tagline">
-              A quiet ledger for roles worth reaching toward.
+              Rejected roles and quiet threads you cleared from the main ledger.
             </p>
           </div>
           <div className="dashboard__actions">
             <ThemeToggle isEvening={isEvening} onToggle={toggle} />
             <button
               type="button"
-              className="btn btn--ghost dashboard__archive-nav"
-              onClick={onViewArchived}
+              className="btn btn--ghost"
+              onClick={onViewActive}
             >
-              Archived{archivedCount > 0 ? ` (${archivedCount})` : ''}
+              Back to applications
             </button>
             <button className="btn btn--ghost dashboard__signout-btn" onClick={handleSignOut}>
               Sign out
-            </button>
-            <button className="btn btn--primary dashboard__add-btn" onClick={openAdd}>
-              Log application
             </button>
           </div>
         </div>
@@ -142,36 +127,29 @@ export function Dashboard({
           </div>
         )}
 
-        <div className="dashboard__layout">
-          <aside className="dashboard__sidebar">
-            <SummaryCard applications={activeApplications} />
-
-            {nudges.length > 0 && (
-              <section className="dashboard__nudges" aria-label="Reminders">
-                <p className="dashboard__nudges-label kicker">Reminders</p>
-                {nudges.map((nudge) => (
-                  <NudgeBanner key={nudge.key} nudge={nudge} onDismiss={dismiss} />
-                ))}
-              </section>
-            )}
-          </aside>
-
-          <section className="dashboard__content" aria-label="Applications">
-            {loading ? (
-              <p className="dashboard__loading">Gathering your entries…</p>
-            ) : (
-              <ApplicationList
-                applications={sortedApplications}
-                sortBy={sortBy}
-                onSortChange={setSortBy}
-                onEdit={openEdit}
-                onDelete={handleDelete}
-                onArchive={handleArchive}
-                onAdd={openAdd}
-              />
-            )}
-          </section>
-        </div>
+        <section className="archived-page__content" aria-label="Archived applications">
+          {loading ? (
+            <p className="dashboard__loading">Gathering archived entries…</p>
+          ) : (
+            <ApplicationList
+              applications={sortedApplications}
+              sortBy={sortBy}
+              onSortChange={setSortBy}
+              onEdit={openEdit}
+              onDelete={handleDelete}
+              onUnarchive={handleUnarchive}
+              archived
+              title="Archive"
+              kicker="Out of the main view"
+              emptyTitle="Nothing archived yet."
+              emptyBody={
+                <p className="app-list__empty-sub">
+                  Applications marked Rejected are archived automatically. You can also archive any entry from the main list.
+                </p>
+              }
+            />
+          )}
+        </section>
       </main>
 
       {formOpen && (

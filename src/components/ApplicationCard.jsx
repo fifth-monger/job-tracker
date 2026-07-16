@@ -18,7 +18,14 @@ const STATUS_SLUG = {
   Rejected: 'rejected',
 }
 
-export function ApplicationCard({ application, onEdit, onDelete }) {
+export function ApplicationCard({
+  application,
+  onEdit,
+  onDelete,
+  onArchive,
+  onUnarchive,
+  archived = false,
+}) {
   const { company, role, status, date_applied, source, notes } = application
   const statusSlug = STATUS_SLUG[status] || status.toLowerCase()
 
@@ -28,13 +35,23 @@ export function ApplicationCard({ application, onEdit, onDelete }) {
     }
   }
 
+  async function handleArchive(e) {
+    e.stopPropagation()
+    await onArchive?.(application.id)
+  }
+
+  async function handleUnarchive(e) {
+    e.stopPropagation()
+    await onUnarchive?.(application.id)
+  }
+
   return (
     <article
-      className={`app-card app-card--${statusSlug}`}
-      onClick={() => onEdit(application)}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => e.key === 'Enter' && onEdit(application)}
+      className={`app-card app-card--${statusSlug}${archived ? ' app-card--archived' : ''}`}
+      onClick={() => onEdit?.(application)}
+      role={onEdit ? 'button' : undefined}
+      tabIndex={onEdit ? 0 : undefined}
+      onKeyDown={(e) => onEdit && e.key === 'Enter' && onEdit(application)}
     >
       <div className="app-card__accent" aria-hidden="true" />
 
@@ -58,14 +75,47 @@ export function ApplicationCard({ application, onEdit, onDelete }) {
         </footer>
       </div>
 
-      <button
-        className="app-card__delete"
-        onClick={(e) => { e.stopPropagation(); handleDelete() }}
-        onKeyDown={(e) => e.stopPropagation()}
-        aria-label={`Delete ${company} application`}
-      >
-        <span aria-hidden="true">×</span>
-      </button>
+      <div className="app-card__actions">
+        {archived ? (
+          onUnarchive && (
+            <button
+              type="button"
+              className="app-card__action app-card__action--restore"
+              onClick={handleUnarchive}
+              onKeyDown={(e) => e.stopPropagation()}
+              aria-label={`Restore ${company} application`}
+              title="Restore"
+            >
+              Restore
+            </button>
+          )
+        ) : (
+          onArchive && (
+            <button
+              type="button"
+              className="app-card__action app-card__action--archive"
+              onClick={handleArchive}
+              onKeyDown={(e) => e.stopPropagation()}
+              aria-label={`Archive ${company} application`}
+              title="Archive"
+            >
+              Archive
+            </button>
+          )
+        )}
+        {onDelete && (
+          <button
+            type="button"
+            className="app-card__action app-card__action--delete"
+            onClick={(e) => { e.stopPropagation(); handleDelete() }}
+            onKeyDown={(e) => e.stopPropagation()}
+            aria-label={`Delete ${company} application`}
+            title="Delete"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        )}
+      </div>
     </article>
   )
 }

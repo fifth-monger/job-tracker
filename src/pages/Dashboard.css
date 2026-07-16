@@ -115,6 +115,10 @@
   white-space: nowrap;
 }
 
+.dashboard__archive-nav {
+  white-space: nowrap;
+}
+
 .dashboard__rule {
   max-width: 1080px;
   margin: 0 auto;

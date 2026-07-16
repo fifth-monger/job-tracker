@@ -17,5 +17,10 @@ export function emptyForm() {
     contact: '',
     source: '',
     notes: '',
+    is_archived: false,
   }
+}
+
+export function isArchived(application) {
+  return Boolean(application?.is_archived)
 }
